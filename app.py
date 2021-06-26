@@ -1,7 +1,8 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS, cross_origin
 from numpy import loadtxt
-from keras.models import load_model
+import tensorflow as tf
+from tensorflow.keras.models import load_model
 import pandas as pd
 import numpy as np
 import pickle
