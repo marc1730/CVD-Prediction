@@ -53,5 +53,3 @@ def predict():
              "nn_prediction": str(pred[0]),
              "probability" : str(nn_prediction[0][0])
             })
-
-#app.run(host="0.0.0.0", port=5000)
