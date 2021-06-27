@@ -14,6 +14,7 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 
 lr_model = pickle.load(open('finalized_lr_model.sav','rb'))
 nn_model = load_model('model.h5')
+scaler = pickle.load(open('scaler.pkl', 'rb'))
 
 @app.route("/")
 @cross_origin()
@@ -43,10 +44,10 @@ def predict():
         features = np.array([a,b,c,d,e,f,g,h,i,j,k,l])
         features_df = pd.DataFrame(features)
         finalized_df = features_df.transpose()
-
         print(finalized_df )
-        lr_prediction = lr_model.predict(finalized_df)
-        nn_prediction = nn_model.predict(finalized_df)
+        scaled_df = scaler.transform(finalized_df)
+        lr_prediction = lr_model.predict(scaled_df)
+        nn_prediction = nn_model.predict(scaled_df)
         pred = [1 if y >= 0.5 else 0 for y in nn_prediction]
         return jsonify(
             {"lr_prediction":str(lr_prediction[0]),
