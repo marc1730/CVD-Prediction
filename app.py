@@ -16,15 +16,6 @@ lr_model = pickle.load(open('finalized_lr_model.sav','rb'))
 nn_model = load_model('model.h5')
 scaler = pickle.load(open('scaler.pkl', 'rb'))
 
-@app.route("/")
-@cross_origin()
-def home():
-    return "<h1>Testing application</h1>"
-
-@app.route("/home")
-def test_home():
-    return "<h1>Home</h1>"
-
 @app.route('/predict', methods=["GET"])
 def predict():
     if request.method == 'GET':
@@ -44,7 +35,6 @@ def predict():
         features = np.array([a,b,c,d,e,f,g,h,i,j,k,l])
         features_df = pd.DataFrame(features)
         finalized_df = features_df.transpose()
-        print(finalized_df )
         scaled_df = scaler.transform(finalized_df)
         lr_prediction = lr_model.predict(scaled_df)
         nn_prediction = nn_model.predict(scaled_df)
