@@ -1,12 +1,11 @@
 from flask import Flask, jsonify, request
-from flask_cors import CORS, cross_origin
+from flask_cors import CORS
 from numpy import loadtxt
 import tensorflow as tf
 from tensorflow.keras.models import load_model
 import pandas as pd
 import numpy as np
 import pickle
-
 
 app = Flask(__name__)
 cors = CORS(app)
@@ -44,3 +43,4 @@ def predict():
              "nn_prediction": str(pred[0]),
              "probability" : str(nn_prediction[0][0])
             })
+
