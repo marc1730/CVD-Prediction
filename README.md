@@ -3,7 +3,7 @@
 Before running the Flask server, please have Flask module and Python 3.8.6 installed first.
 In your terminal, use "flask run" command to run the app.py.
 
-cardio_train.csv is the CVD dataset used.
+cardio_train.csv is the Cardiovascular Disease (CVD) dataset used.
 
 The notebook is located in the Models.ipynb file.
 
